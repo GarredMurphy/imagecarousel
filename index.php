@@ -2,14 +2,18 @@
     $backgroundImage = "img/sea.jpg";
     $keyword = $_GET['keyword'];
     $category = $_GET['category'];
-    if ($category == "" && $keyword == "")
+    if ($category != "")
+    {
+        $keyword = $category;
+    }
+    if ($keyword == "")
     {}
     else
-    ##if (isset($_GET['keyword']) ||  isset($_GET['category']))
+    ##if (isset($_GET['keyword']))
     {
-        echo "<h2 >You searched for " . $_GET['keyword'] . "<br /> in the category " . $_GET['category'] . "</h2>";
+        echo "<h2 >You searched for " . $keyword . "</h2>";
         include 'api/pixabayAPI.php';
-        $imageURLs = getImageURLs($_GET['keyword'], $_GET['category'], $_GET['layout']);
+        $imageURLs = getImageURLs($keyword, $_GET['layout']);
         ## print_r($imageURLs);
         $backgroundImage = $imageURLs[array_rand($imageURLs)];
     }
@@ -21,6 +25,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
         <style>
             @import url("css/styles.css");
             body {
@@ -28,8 +33,20 @@
                 background-size: 100% 100%;
                 background-attachment: fixed;
             }
-
+            
+            
         </style>
+        <?php 
+        if ( $_GET['layout'] == "vertical")
+        {
+            echo "<style>#carousel-example-generic {width: 400px;}</style>";
+        }
+        else
+        {
+            echo "<style>#carousel-example-generic {width: 630px;}</style>";
+        }
+        ?>
+        
     </head>
     <body>
 

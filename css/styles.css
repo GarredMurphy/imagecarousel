@@ -1,6 +1,6 @@
     body{
         opacity:0.9;
-        width:100%;
+        /*width:100%;*/
         text-align:center;
         color:yellow;
     }
@@ -13,8 +13,8 @@
     
     #carousel-example-generic {
         margin: 0 auto; 
-        width:  630px;
-        height: 630px;
+        /*width:  630px;
+        height: 630px;*/
     }
     
     h2 {
